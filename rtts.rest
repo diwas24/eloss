@@ -1,0 +1,29 @@
+GET http://localhost:3000/
+
+###
+
+GET http://localhost:3000/647e9340494112419edc14c6
+
+###
+POST http://localhost:3000/
+Content-Type: application/json
+
+{
+    "title":"work",
+    "rep":2,
+    "level":0,
+    "description":"Do  it"
+}
+
+###
+DELETE http://localhost:3000/647e91e56330a7c8e0a53993
+
+###
+
+PATCH http://localhost:3000/647ea21f69c12acc3d11de39
+Content-Type: application/json
+
+{
+    "title":"work2",
+    "description":"Dooo  it"
+}
