@@ -1,7 +1,7 @@
 // ALL REQUIRES:
 const express = require("express");
 const path = require("path");
-var { engine } = require("express-handlebars");
+var exphbs = require("express-handlebars");
 var multer = require("multer");
 var mongoose = require("mongoose");
 require("dotenv").config();
@@ -20,9 +20,13 @@ db.on("error", (e) => {
 db.once("open", () => console.log("Connected to MongoDB"));
 
 // ENGINE HANDLING
-app.engine(".hbs", engine({ extname: ".hbs" }));
+app.engine(".hbs", exphbs.engine({ extname: ".hbs" }));
 app.set("view engine", ".hbs");
 app.set("views", "./views");
+const hbs = exphbs.create({
+  partialsDir: ["views/partials"],
+});
+app.engine("handlebars", hbs.engine);
 
 // MIDDLEWARE
 app.use(express.json());
@@ -31,7 +35,7 @@ app.use(upload.array());
 app.use(express.static(path.join(__dirname, "public")));
 
 // PROTECTED ROUTES
-
+// AUTH Handler
 // PRIVATE ROUTES
 
 // PUBLIC ROUTES
